@@ -1,0 +1,26 @@
+{
+  "_description" : "this is a config file similar to kafka's jdbc-sink-connector config",
+  "name": "iotdb-sink-connector",
+  "config": {
+    "connector.class": "amf.kafka.connector.IoTDBSinkConnector",
+    "tasks.max": 1,
+    "topics": "the-kafka-topic-we-want-to-consume-from",
+
+    "iotdb.user" : "iotdb username",
+    "iotdb.password": "iotdb password",
+    "iotdb.url": "127.0.0.1",
+    "iotdb.port": 6667,
+    "storage.group": "root.analog",
+    "timeseries.key": "MEASUREMENTID",
+    "timeseries.values": "VALUE,QUALITY",
+    "timeseries.types" : "double,int",
+    "timeseries.timestamp": "TIMESTAMP",
+
+    "schema.registry.url": "http://schema-registry:8081",
+    "value.converter.schema.registry.url": "http://schema-registry:8081",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "io.confluent.connect.protobuf.ProtobufConverter",
+    "key.converter.schemas.enable": true,
+    "value.converter.schemas.enable": true
+  }
+}
