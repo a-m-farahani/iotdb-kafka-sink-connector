@@ -11,7 +11,7 @@ Dependencies:
 * org.apache.iotdb 1.3.0
 * org.slf4j 2.0.9
 
-#### Build
+#### Build:
 This project uses Maven as the build tools. To build it, run ```mvn package``` command. Example:
 ```
 $ mvn clean package -P get-jar-with-dependencies
@@ -21,7 +21,7 @@ The 'get-jar-with-dependencies' profile, defined in the ```pom.xml``` file, pack
 
 ---
 
-### Details
+### Details:
 A Sink connector primarily needs to inherit and extend three classes:
 * `org.apache.kafka.common.config.AbstractConfig`
     * serves as a foundation for configuration management in custom connectors.
@@ -51,7 +51,7 @@ Note that the message format can be PlainText, JSON, or Protobuf. Kafka-Connect 
 
 ---
 
-### Usage
+### Usage:
 We've previously mentioned this SinkConnector is tested with the `confluentinc/cp-kafka-connect` Docker image. However, to integrate your custom iotdb-sink-connector, you'll need to take the following steps: 
 1. **Build** and Package the project to create a JAR file.
 2. **Mount** the JAR file as a volume at `/usr/share/java/` within the Kafka-Connect Docker container. ([Example](https://github.com/confluentinc/demo-scene/blob/master/kafka-connect-zero-to-hero/docker-compose.yml#L82-L87))
