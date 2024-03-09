@@ -47,7 +47,7 @@ Consider a scenario where services publish messages to a Kafka topic named 'PV_D
 }
 ```
 
-Note that the message format can be PlainText, JSON, or Protobuf. Kafka-Connect handles decoding the message content automatically, so you don't need to concern yourself with the decoding stuff. For more detail about encoding and decondig Kafka messages [see this](https://github.com/a-m-farahani/kafka-tutorial#schema-registry).
+Note that the message format can be PlainText, JSON, or Protobuf. Kafka-Connect handles decoding the message content automatically, so you don't need to concern yourself with the decoding stuff. For more detail about encoding and decondig Kafka messages [see this](https://github.com/a-m-farahani/kafka-tutorial#schema-registry). Schema-registry settings in the config file ([iotdb-sink-config.json](https://github.com/a-m-farahani/iotdb-kafka-sink-connector/blob/main/iotdb-sink-config.json)) is for this purpose.
 
 ---
 
