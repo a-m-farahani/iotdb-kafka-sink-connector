@@ -24,11 +24,11 @@ The 'get-jar-with-dependencies' profile, defined in the ```pom.xml``` file, pack
 ### Details
 A Sink connector primarily needs to inherit and extend three classes:
 * `org.apache.kafka.common.config.AbstractConfig`
-    * serves as a foundation for configuration management in custom connectors
+    * serves as a foundation for configuration management in custom connectors.
 * `org.apache.kafka.connect.sink.SinkTask`
-    * responsible for processing and sending data from Kafka topics to external systems (in this case SinkConnector object)
+    * responsible for processing and sending data from Kafka topics to external systems (in this case SinkConnector object).
 * `org.apache.kafka.connect.sink.SinkConnector`
-    * serves as the blueprint for applications that move data from Kafka topics to external systems
+    * serves as the blueprint for applications that move data from Kafka topics to external systems.
 
 We also implemented an IoTDBSinkService class to isolate the code interacting with IoTDB from the main module.
 
@@ -52,4 +52,12 @@ Note that the message format can be PlainText, JSON, or Protobuf. Kafka-Connect 
 ---
 
 ### Usage
-TODO: add contents about how to use this sink connector
+We've previously mentioned this SinkConnector is tested with the `confluentinc/cp-kafka-connect` Docker image. However, to integrate your custom iotdb-sink-connector, you'll need to take the following steps: 
+1. **Build** and Package the project to create a JAR file.
+2. **Mount** the JAR file as a volume at `/usr/share/java/` within the Kafka-Connect Docker container. ([Example](https://github.com/confluentinc/demo-scene/blob/master/kafka-connect-zero-to-hero/docker-compose.yml#L82-L87))
+3. **Prepare config** file, you can use a file like [iotdb-sink-config.json](https://github.com/a-m-farahani/iotdb-kafka-sink-connector/blob/main/iotdb-sink-config.json) as a reference. This file provides an example of the settings required for the iotdb-kafka-sink-connector.
+4. **Register** the Sink connector. To register your custom connector you can send a `POST` request to Kafka-Connect REST service.
+
+    `$ curl -s -S -XPOST -H Accept:application/json -H Content-Type:application/json http://localhost:8083/connectors/ -d @./iotdb-sink-config.json`
+
+After registering the connector you can check it by tracing Kafka-Connect logs.
