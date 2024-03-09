@@ -61,3 +61,6 @@ We've previously mentioned this SinkConnector is tested with the `confluentinc/c
     `$ curl -s -S -XPOST -H Accept:application/json -H Content-Type:application/json http://localhost:8083/connectors/ -d @./iotdb-sink-config.json`
 
 After registering the connector you can check it by tracing Kafka-Connect logs.
+
+You can **Unregister** the connector using a `DELETE` request:
+`$ curl -X DELETE http://localhost:8083/connectors/iotdb-sink-connector`
