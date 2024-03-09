@@ -55,7 +55,7 @@ Note that the message format can be PlainText, JSON, or Protobuf. Kafka-Connect 
 We've previously mentioned this SinkConnector is tested with the `confluentinc/cp-kafka-connect` Docker image. However, to integrate your custom iotdb-sink-connector, you'll need to take the following steps: 
 1. **Build** and Package the project to create a JAR file.
 2. **Mount** the JAR file as a volume at `/usr/share/java/` within the Kafka-Connect Docker container. ([Example](https://github.com/confluentinc/demo-scene/blob/master/kafka-connect-zero-to-hero/docker-compose.yml#L82-L87))
-3. **Prepare config** file, you can use a file like [iotdb-sink-config.json](https://github.com/a-m-farahani/iotdb-kafka-sink-connector/blob/main/iotdb-sink-config.json) as a reference. This file provides an example of the settings required for the iotdb-kafka-sink-connector.
+3. **Prepare config** file, you can use a file like [iotdb-sink-config.json](https://github.com/a-m-farahani/iotdb-kafka-sink-connector/blob/main/iotdb-sink-config.json) as a reference. This file provides an example of the settings required for the iotdb-kafka-sink-connector. (Note: AbstractConfig class reads the config file contents.)
 4. **Register** the Sink connector. To register your custom connector you can send a `POST` request to Kafka-Connect REST service.
 
     `$ curl -s -S -XPOST -H Accept:application/json -H Content-Type:application/json http://localhost:8083/connectors/ -d @./iotdb-sink-config.json`
