@@ -19,5 +19,37 @@ $ mvn clean package -P get-jar-with-dependencies
 
 The 'get-jar-with-dependencies' profile, defined in the ```pom.xml``` file, packages the entire sink connector module into a single executable JAR file. The JAR file is compatible with confluent/kafka-connect service. After building, JAR file would be in the ```target``` directory.
 
-#### Usage
+---
+
+### Details
+A Sink connector primarily needs to inherit and extend three classes:
+* `org.apache.kafka.common.config.AbstractConfig`
+    * serves as a foundation for configuration management in custom connectors
+* `org.apache.kafka.connect.sink.SinkTask`
+    * responsible for processing and sending data from Kafka topics to external systems (in this case SinkConnector object)
+* `org.apache.kafka.connect.sink.SinkConnector`
+    * serves as the blueprint for applications that move data from Kafka topics to external systems
+
+We also implemented an IoTDBSinkService class to isolate the code interacting with IoTDB from the main module.
+
+We assume each Kafka message we consume has two required fileds:
+* `timestamp`
+* `id`
+
+Consider a scenario where services publish messages to a Kafka topic named 'PV_DATA'. These messages, representing data from photovoltaic (PV) panels, could be formatted like this:
+```
+{
+  'pv_id': 'dkJh1o0wxAM',
+  'timestamp': 1709999058,
+  'dc_power': 2.3,
+  'irradiation': 4.67,
+  'module_temperature': 16.8
+}
+```
+
+Note that the message format can be PlainText, JSON, or Protobuf. Kafka-Connect handles decoding the message content automatically, so you don't need to concern yourself with the decoding stuff. For more detail about encoding and decondig Kafka messages [see this](https://github.com/a-m-farahani/kafka-tutorial#schema-registry).
+
+---
+
+### Usage
 TODO: add contents about how to use this sink connector
