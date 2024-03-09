@@ -1,4 +1,4 @@
-## A Sink Connector for Kafka-Connect service
+## A Sink Connector for Apache IoTDB
 
 iotdb-kafka-sink-connector is a **Sink** connector for [Apache IoTDB](https://iotdb.apache.org/). 
 
